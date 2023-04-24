@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="page-heading">
+  <h3>Pacientes</h3>
+</div>
+  <div class="page-content">
+    <section class="row">
+        <div class="col-12 col-md-12">
+           <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"></h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                       
+                    </div>
+
+                    <!-- Table with no outer spacing -->
+                    <div class="table-responsive">
+                        <table class="table mb-0 table-lg">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Codigo Paciente</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Edad</th>
+                                    <th>DNI</th>
+                                    <th>Sexo</th>
+                                    <th>Pais</th>
+                                    <th>Ciudad</th>
+                                    <th>Direccion</th>
+                                    <th>Celular</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for paciente in pacientes %}
+                                <tr>
+                                    <td>{{paciente[0]}}</td>
+                                    <td>{{paciente[1]}}</td>
+                                    <td>{{paciente[2]}}</td>
+                                    <td>{{paciente[3]}}</td>
+                                    <td>{{paciente[4]}}</td>
+                                    <td>{{paciente[5]}}</td>
+                                    <td>{{paciente[6]}}</td>
+                                    <td>{{paciente[7]}}</td>
+                                    <td>{{paciente[8]}}</td> 
+                                    <td>{{paciente[9]}}</td>
+                                    <td>{{paciente[10]}}</td>
+                                    <td>{{paciente[11]}}</td>
+                                    <td>{{paciente[12]}}</td>
+                                </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </section>
+  </div>
+{% endblock %}

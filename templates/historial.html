@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="page-heading">
+  <h3>Clasificar</h3>
+</div>
+  <div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-12">
+            
+            <div class="row">
+                  <div class="col-6">
+                      <div class="card">
+                          <div class="card-header">
+                              <h4>Historial de Pacientes</h4>
+                          </div>
+                          <div class="card-body">
+                            <table id="example2" class="ui celled table" style="width:100%">
+                  
+                              <tbody>
+                                {% for historial in historials %}
+                                          <tr>
+                                            <div class="card w-100">
+                                              <div class="card-body">
+                                                <h5 class="card-title"> N° {{historial[5]}}</h5>
+                                              
+                                                  <div class="row">
+                                                    <div class="col-md-4">Cod Medico : <strong>{{historial[1]}}</strong></div>
+                                                    <div class="col-md-4">Cod Paciente : <strong>{{historial[2]}}</strong></div>
+                                                    <div class="col-md-4">Descripcion : <strong>{{historial[4]}}</strong></div>
+                                                    <div class="col-md-4">Fecha : <strong>{{historial[3]}}</strong></div>
+                                                    <div class="col-md-4 ms-auto">Resultado :
+                                                         {% if historial[3] == "1" %}
+                                                         <div class="p-3 mb-2 bg-success text-white"><strong>Positivo</strong></div>
+                                                         {% else %}
+                                                         <div class="p-3 mb-2 bg-danger text-white"><strong>Negativo</strong></div>
+                                                         {% endif %}
+                                                        </div>
+                                                  </div>
+                                                  <div class="row">
+                                                  <div class="col align-self-end">
+                                                    
+                                                  
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <br>
+                                          </tr>
+                                          {% endfor %}
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!--otra columna-->
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Historial de Pacientes</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="line"></canvas>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>   
+    </section>
+  </div>
+ 
+{% endblock %}

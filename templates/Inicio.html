@@ -1,0 +1,321 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="page-heading">
+  <h3>Mis Datos</h3>
+</div>
+  <div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-12">
+            <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon purple">
+                                        <i class="iconly-boldShow"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total Diagnosticos</h6>
+                                    <h6 class="font-extrabold mb-0">11</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total Pacientes</h6>
+                                    <h6 class="font-extrabold mb-0">20</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon green">
+                                        <i class="iconly-boldAdd-User"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">P. Pendientes</h6>
+                                    <h6 class="font-extrabold mb-0">4</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">P. Diagnosticados</h6>
+                                    <h6 class="font-extrabold mb-0">6</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                  <div class="col-9">
+                      <div class="card">
+                          <div class="card-header">
+                              <h4>Perfil</h4>
+                          </div>
+                          <div class="card-body">
+                            {% for medico in medicos %}
+                            <form class="form form-vertical">
+                              <div class="form-body">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <div class="form-group has-icon-left">
+                                          <label for="first-name-icon">ID</label>
+                                          <div class="position-relative">
+                                              <input type="text" class="form-control"
+                                                  id="first-name-icon" name="id_medico"  value="{{medico[0]}}">
+                                              <div class="form-control-icon">
+                                                  <i class="bi bi-person"></i>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="form-group has-icon-left">
+                                        <label for="first-name-icon">Código</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control"
+                                                id="first-name-icon" name="codigo_medico" value="{{medico[0]}}">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                      <div class="col-3">
+                                          <div class="form-group has-icon-left">
+                                              <label for="first-name-icon">Nombres</label>
+                                              <div class="position-relative">
+                                                  <input type="text" class="form-control"
+                                                      id="first-name-icon" name="Nombres" value="{{medico[1]}}">
+                                                  <div class="form-control-icon">
+                                                      <i class="bi bi-person"></i>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">Apellidos</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control"
+                                                    id="first-name-icon" name="Apellidos" value="{{medico[2]}}">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          </div>
+                                          <div class="col-3">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Fecha de Nacimiento</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control"
+                                                        id="first-name-icon" name="Fecha_Naci" value="{{medico[3]}}">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-person"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                          <div class="form-group has-icon-left">
+                                              <label for="first-name-icon">Edad</label>
+                                              <div class="position-relative">
+                                                  <input type="text" class="form-control"
+                                                      id="first-name-icon" name="Edad" value="{{medico[13]}}">
+                                                  <div class="form-control-icon">
+                                                      <i class="bi bi-person"></i>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">DNI</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control"
+                                                    id="first-name-icon" name="DNI" value="{{medico[4]}}">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                            <div class="col-3">
+                                              <div class="form-group has-icon-left">
+                                                  <label for="first-name-icon">Especialidad</label>
+                                                  <div class="position-relative">
+                                                      <input type="text" class="form-control"
+                                                          id="first-name-icon" name="Especialidad" value="{{medico[5]}}">
+                                                      <div class="form-control-icon">
+                                                          <i class="bi bi-person"></i>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-3">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Sexo</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control"
+                                                        id="first-name-icon" name="Sexo" value="{{medico[12]}}">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-person"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                          <div class="form-group has-icon-left">
+                                              <label for="first-name-icon">País</label>
+                                              <div class="position-relative">
+                                                  <input type="text" class="form-control"
+                                                      id="first-name-icon" name="Pais" value="{{medico[8]}}">
+                                                  <div class="form-control-icon">
+                                                      <i class="bi bi-person"></i>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">Ciudad</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control"
+                                                    id="first-name-icon" name="Ciudad" value="{{medico[9]}}">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                      <div class="form-group has-icon-left">
+                                          <label for="first-name-icon">Direccion</label>
+                                          <div class="position-relative">
+                                              <input type="text" class="form-control"
+                                                  id="first-name-icon" name="Dirección" value="{{medico[6]}}">
+                                              <div class="form-control-icon">
+                                                  <i class="bi bi-person"></i>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="form-group has-icon-left">
+                                        <label for="mobile-id-icon">Celular</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control"
+                                                placeholder="Mobile" id="Celular" value="{{medico[7]}}">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-phone"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                      <div class="col-3">
+                                          <div class="form-group has-icon-left">
+                                              <label for="email-id-icon">Email</label>
+                                              <div class="position-relative">
+                                                  <input type="text" class="form-control"
+                                                      placeholder="Email" id="email-id-icon" name="Email" value="{{medico[9]}}">
+                                                  <div class="form-control-icon">
+                                                      <i class="bi bi-envelope"></i>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      
+                                      <div class="col-3">
+                                          
+                                      </div>
+                                      
+                                      <div class="col-12 d-flex justify-content-end">
+                                          <button type="submit"
+                                              class="btn btn-primary me-1 mb-1">Actualizar</button>
+                          
+                                      </div>
+                                  </div>
+                              </div>
+                            </form>
+                            {% endfor %}
+                          </div>
+                      </div>
+                  </div>
+                  <!--otra columna-->
+                <div class="col-3">
+                    <div class="card px-3 ">
+                      <div class="card-header">
+                        <h4>Actividades</h4>
+                          <div class="card-content pb-4">
+                              <div class="recent-message d-flex px-4 py-3">
+                                  <div class="avatar avatar-lg">
+                                      <img src="static/images/faces/4.jpg">
+                                  </div>
+                                  <div class="name ms-4">
+                                      <h5 class="mb-1">Hank Schrader</h5>
+                                      <h6 class="text-muted mb-0">@johnducky</h6>
+                                  </div>
+                              </div>
+                              <div class="recent-message d-flex px-4 py-3">
+                                  <div class="avatar avatar-lg">
+                                      <img src="static/images/faces/5.jpg">
+                                  </div>
+                                  <div class="name ms-4">
+                                      <h5 class="mb-1">Dean Winchester</h5>
+                                      <h6 class="text-muted mb-0">@imdean</h6>
+                                  </div>
+                              </div>
+                              <div class="recent-message d-flex px-4 py-3">
+                                  <div class="avatar avatar-lg">
+                                      <img src="static/images/faces/1.jpg">
+                                  </div>
+                                  <div class="name ms-4">
+                                      <h5 class="mb-1">John Dodol</h5>
+                                      <h6 class="text-muted mb-0">@dodoljohn</h6>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>   
+    </section>
+  </div>
+{% endblock %}

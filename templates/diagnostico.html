@@ -1,0 +1,468 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="page-heading">
+  <h3>Clasificar</h3>
+</div>
+  <div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-12">
+            <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon purple">
+                                        <i class="iconly-boldShow"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Puntaje Precision</h6>
+                                    <h6 class="font-extrabold mb-0">9.87</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Cantidad Ejecucion</h6>
+                                    <h6 class="font-extrabold mb-0">25</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon green">
+                                        <i class="iconly-boldAdd-User"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Cantidad Data</h6>
+                                    <h6 class="font-extrabold mb-0">1500</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Timpo Ejecucion</h6>
+                                    <h6 class="font-extrabold mb-0">6 min</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                  <div class="col-8">
+                      <div class="card">
+                          <div class="card-header">
+                              <h4>Lista de Pacientes Pendientes</h4>
+                          </div>
+                          <div class="card-body">
+                            <table id="example2" class="ui celled table" style="width:100%">
+                  
+                              <tbody>
+                                {% for paciente in pacientes %}
+                                          <tr>
+                                            <div class="card w-100">
+                                              <div class="card-body">
+                                                <h5 class="card-title"> - {{paciente[2]}}, {{paciente[3]}}</h5>
+                                              
+                                                  <div class="row">
+                                                    <div class="col-md-4">DNI: {{paciente[6]}}</div>
+                                                    <div class="col-md-4 ms-auto">Codigo: {{paciente[1]}}</div>
+                                                  </div>
+                                                  <div class="row">
+                                                  <div class="col align-self-end">
+                                                    <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">Generar Diagnostico</button>
+                                                  <!-- Modal con formulario de varios pasos -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">En Proceso</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            <form id="formulario" class="form"  action="/clasificar" method="POST" enctype="multipart/form-data">
+                                                                <!-- Paso 1 -->
+                                                                <div id="paso1" class="paso">
+                                                                <h4>Paso 1 : Verificar Datos</h4>
+                                                                <hr>
+                                                            <br>
+                                                                <div class="form-group">
+                                                                    {% for medico in medicos %}
+                                                                    <label for="nombre">Codigo de Medico : </label>
+                                                                    <input type="text" class="form-control" id="codigo_medico" name="codigo_medico" value="{{medico[0]}}">
+                                                                    {% endfor %}
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="apellido">Codigo Paciente : </label>
+                                                                    <input type="text" class="form-control" id="codigo_paciente" name="codigo_paciente" value="{{paciente[1]}}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="apellido">Nombre Paciente : </label>
+                                                                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{paciente[2]}}">
+                                                                </div>
+                                                                </div>
+                                                                <!-- Paso 2 -->
+                                                                <div id="paso2" class="paso">
+                                                                    <h4>Paso 2 : Subir Imagen - RTX</h4> 
+                                                                    <hr>
+                                                                <div class="form-group">
+                                                                    <div class="card-content">
+                                                                        <div class="card-body">
+                                                                            <p class="card-text">Arraste la Imagen en el Area o seleccione el Area...
+                                                                            </p>
+                                                                            <!-- imgBB file uploader
+                                                                            <input type="file" id="url" name="url" class="image-resize-filepond"> -->
+                                                                            <div class="input-group mb-3">
+                                                                                <input type="file" class="form-control" id="url" name="url">
+                                                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                                                              </div>
+                                                                              
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                <!-- Paso 3 -->
+                                                                <div id="paso3" class="paso">
+                                                                    <h4>Paso 3 : Descripcion </h4> 
+                                                                    <hr>
+                                                                <div class="form-group">
+                                                                    <p class="card-text">Descripcion de la Imagen Inicial
+                                                                    </p>
+                                                                    <label for="telefono">Descripcion : </label>
+                                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+
+                                                                </div>
+                                                                </div>
+                                                            
+                                                            <br>
+                                                             <!-- Barra de progreso -->
+                                                             <div class="progress">
+                                                                <div class="progress-bar" role="progressbar"  style="width: 33%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="button" onclick="printFileValue()" class="btn btn-primary" >Siguiente</button>
+                                                            <button type="submit" class="btn btn-primary" >Clasificar</button>
+                                                            </div>
+                                                        </form>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <br>
+                                          </tr>
+                                          {% endfor %}
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!--otra columna-->
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Grafico de Presicion</h4>
+                        </div>
+                        
+                            <img src="static/images/grafico.png" alt="">
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>   
+    </section>
+  </div>
+  <script>
+    function printFileValue() {
+        const files = document.getElementById('url').files;
+        console.log(files);
+      }
+    
+  </script>
+  <script>
+    $(document).ready(function() {
+   // register desired plugins...
+	FilePond.registerPlugin(
+        // validates the size of the file...
+        FilePondPluginFileValidateSize,
+        // validates the file type...
+        FilePondPluginFileValidateType,
+
+        // calculates & dds cropping info based on the input image dimensions and the set crop ratio...
+        FilePondPluginImageCrop,
+        // preview the image file type...
+        FilePondPluginImagePreview,
+        // filter the image file
+        FilePondPluginImageFilter,
+        // corrects mobile image orientation...
+        FilePondPluginImageExifOrientation,
+        // calculates & adds resize information...
+        FilePondPluginImageResize,
+    );
+    
+    // Filepond: Basic
+    FilePond.create( document.querySelector('.basic-filepond'), { 
+        allowImagePreview: false,
+        allowMultiple: false,
+        allowFileEncode: false,
+        required: false
+    });
+
+    // Filepond: Multiple Files
+    FilePond.create( document.querySelector('.multiple-files-filepond'), { 
+        allowImagePreview: false,
+        allowMultiple: true,
+        allowFileEncode: false,
+        required: false
+    });
+
+    // Filepond: With Validation
+    FilePond.create( document.querySelector('.with-validation-filepond'), { 
+        allowImagePreview: false,
+        allowMultiple: true,
+        allowFileEncode: false,
+        required: true,
+        acceptedFileTypes: ['image/png'],
+        fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+            // Do custom type detection here and return with promise
+            resolve(type);
+        })
+    });
+
+    // Filepond: ImgBB with server property
+    FilePond.create( document.querySelector('.imgbb-filepond'), { 
+        allowImagePreview: false, 
+        server: {
+            process: (fieldName, file, metadata, load, error, progress, abort) => {
+                // We ignore the metadata property and only send the file
+
+                const formData = new FormData();
+                formData.append(fieldName, file, file.name);
+
+                const request = new XMLHttpRequest();
+                // you can change it by your client api key
+                request.open('POST', 'https://api.imgbb.com/1/upload?key=762894e2014f83c023b233b2f10395e2');
+
+                request.upload.onprogress = (e) => {
+                    progress(e.lengthComputable, e.loaded, e.total);
+                };
+
+                request.onload = function() {
+                    if (request.status >= 200 && request.status < 300) {
+                        load(request.responseText);
+                    }
+                    else {
+                        error('oh no');
+                    }
+                };
+
+                request.onreadystatechange = function() {
+                    if (this.readyState == 4) {
+                        if(this.status == 200) {
+                            let response = JSON.parse(this.responseText);
+                            
+                            Toastify({
+                                text: "La Imagen se cargo Correctamente!",
+                                duration: 3000,
+                                close:true,
+                                gravity:"bottom",
+                                position: "right",
+                                backgroundColor: "#4fbe87",
+                            }).showToast();
+                
+                            console.log(response);
+                        } else {
+                            Toastify({
+                                text: "Fallo la carga del Archivo!",
+                                duration: 3000,
+                                close:true,
+                                gravity:"bottom",
+                                position: "right",
+                                backgroundColor: "#ff0000",
+                            }).showToast();   
+
+                            console.log("Error", this.statusText);
+                        }
+                    }
+                };
+
+                request.send(formData);
+            }
+        }
+    });
+
+    // Filepond: Image Preview
+    FilePond.create( document.querySelector('.image-preview-filepond'), { 
+        allowImagePreview: true, 
+        allowImageFilter: false,
+        allowImageExifOrientation: false,
+        allowImageCrop: false,
+        acceptedFileTypes: ['image/png','image/jpg','image/jpeg'],
+        fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+            // Do custom type detection here and return with promise
+            resolve(type);
+        })
+    });
+
+    // Filepond: Image Crop
+    FilePond.create( document.querySelector('.image-crop-filepond'), { 
+        allowImagePreview: true, 
+        allowImageFilter: false,
+        allowImageExifOrientation: false,
+        allowImageCrop: true,
+        acceptedFileTypes: ['image/png','image/jpg','image/jpeg'],
+        fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+            // Do custom type detection here and return with promise
+            resolve(type);
+        })
+    });
+
+        // Filepond: Image Exif Orientation
+    FilePond.create( document.querySelector('.image-exif-filepond'), { 
+        allowImagePreview: true, 
+        allowImageFilter: false,
+        allowImageExifOrientation: true,
+        allowImageCrop: false,
+        acceptedFileTypes: ['image/png','image/jpg','image/jpeg'],
+        fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+            // Do custom type detection here and return with promise
+            resolve(type);
+        })
+    });
+
+    // Filepond: Image Filter
+    FilePond.create( document.querySelector('.image-filter-filepond'), {
+        allowImagePreview: true, 
+        allowImageFilter: true,
+        allowImageExifOrientation: false,
+        allowImageCrop: false,
+        imageFilterColorMatrix: [
+            0.299, 0.587, 0.114, 0, 0,
+            0.299, 0.587, 0.114, 0, 0,
+            0.299, 0.587, 0.114, 0, 0,
+            0.000, 0.000, 0.000, 1, 0
+        ],
+        acceptedFileTypes: ['image/png','image/jpg','image/jpeg'],
+        fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+            // Do custom type detection here and return with promise
+            resolve(type);
+        })
+    });
+
+    // Filepond: Image Resize
+    FilePond.create( document.querySelector('.image-resize-filepond'), {
+        allowImagePreview: true, 
+        allowImageFilter: false,
+        allowImageExifOrientation: false,
+        allowImageCrop: false,
+        allowImageResize: true,
+        imageResizeTargetWidth: 200,
+        imageResizeTargetHeight: 200,
+        imageResizeMode: 'cover',
+        imageResizeUpscale: true,
+        acceptedFileTypes: ['image/png','image/jpg','image/jpeg'],
+        fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+            // Do custom type detection here and return with promise
+            resolve(type);
+        })
+    });
+});
+</script>
+  <script>
+    $(document).ready(function() {
+        // Variables de formulario
+        var numPasos = $('.paso').length;
+        var pasoActual = 1;
+      
+        // Ocultar todos los pasos excepto el primero
+        $('.paso').not(':first').hide();
+      
+        // Función para mostrar el siguiente paso
+        function mostrarSiguientePaso() {
+          if (validarFormulario(pasoActual)) {
+            $('#paso' + pasoActual).hide();
+            pasoActual++;
+            $('#paso' + pasoActual).show();
+            $('.progress-bar').css('width', ((pasoActual-1) * 500 / numPasos) + '%').attr('aria-valuenow', (pasoActual-1) * 500 / numPasos);
+            //$('.modal-footer button').prop('disabled', true);
+            if (pasoActual == numPasos) {
+              //$('.modal-footer button[type="submit"]').prop('disabled', false);
+            } else {
+              $('.modal-footer button[type="button"]').prop('disabled', false);
+            }
+          }
+        }
+      
+        // Función para validar el formulario en el paso actual
+        function validarFormulario(paso) {
+          var formulario = $('#formulario');
+          var campos = $('#paso' + paso + ' .form-control[required]');
+          var valido = true;
+          campos.each(function() {
+            if ($(this).val() == '') {
+              $(this).addClass('is-invalid');
+              valido = false;
+            } else {
+              $(this).removeClass('is-invalid');
+            }
+          });
+          if (valido) {
+            formulario.find('.invalid-feedback').removeClass('d-block');
+            formulario.find('.invalid-feedback').addClass('d-none');
+            return true;
+          } else {
+            formulario.find('.invalid-feedback').addClass('d-block');
+            formulario.find('.invalid-feedback').removeClass('d-none');
+            return false;
+          }
+        }
+      
+        // Botón "Siguiente"
+        $('.modal-footer button[type="button"]').click(function() {
+          mostrarSiguientePaso();
+        });
+      
+        // Botón "Enviar"
+        $('.modal-footer button[type="submit"]').click(function() {
+          if (validarFormulario(numPasos)) {
+            $('#formulario').submit();
+          }
+        });
+      
+      });
+    </script>
+{% endblock %}
